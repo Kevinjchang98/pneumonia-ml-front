@@ -36,7 +36,7 @@ function App() {
 			<h1>Header</h1>
 			<input type="file" onChange={fileSelectedHandler} />
 			<br />
-			{hasFile ? <img className="Preview" src={imagePreview} /> : null}
+			{hasFile ? <img className="Preview" src={imagePreview} alt="Preview" /> : null}
 			<br />
 			<button onClick={fileUploadHandler}>Upload</button>
 			<br />
