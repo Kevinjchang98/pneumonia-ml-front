@@ -11,11 +11,9 @@ function App() {
 	const [ prediction, setPrediction ] = useState();
 
 	const fileSelectedHandler = (event) => {
-		console.log(event.target.files[0]);
 		setFile(event.target.files[0]);
 		setImagePreview(URL.createObjectURL(event.target.files[0]));
 		setHasFile(true);
-		console.log(file);
 	};
 
 	const fileUploadHandler = () => {
@@ -42,6 +40,7 @@ function App() {
 			<br />
 			<button onClick={fileUploadHandler}>Upload</button>
 			<br />
+			{isLoading ? 'Loading' : null}
 			{hasPredicted ? 'Prediction: ' + prediction : null}
 		</div>
 	);
