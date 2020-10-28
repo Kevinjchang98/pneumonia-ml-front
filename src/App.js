@@ -2,6 +2,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import './App.css';
 
+import { FileInput, Button, Spinner, Card, Elevation, Divider } from '@blueprintjs/core';
+
 function App() {
 	const [ hasFile, setHasFile ] = useState(false);
 	const [ file, setFile ] = useState();
@@ -32,16 +34,30 @@ function App() {
 	};
 
 	return (
-		<div className="App">
-			<h1>Header</h1>
-			<input type="file" onChange={fileSelectedHandler} />
-			<br />
-			{hasFile ? <img className="Preview" src={imagePreview} alt="Preview" /> : null}
-			<br />
-			<button onClick={fileUploadHandler}>Upload</button>
-			<br />
-			{isLoading ? 'Loading' : null}
-			{hasPredicted ? 'Prediction: ' + prediction : null}
+		<div className="MainContainer">
+			<Card elevation={Elevation.FOUR} className="MainCard">
+				<div className="App">
+					<h1 className="bp3-heading">Pneumonia X-Ray Classifier</h1>
+
+					<Divider />
+					<br />
+
+					<h4 className="bp3-heading">Choose an X-ray to upload</h4>
+					<FileInput type="file" onChange={fileSelectedHandler} />
+
+					<br />
+					<br />
+
+					{hasFile ? <img className="Preview" src={imagePreview} alt="Preview" /> : null}
+
+					<Divider />
+					<br />
+					<h4 className="bp3-heading">Get a prediction</h4>
+					{isLoading ? <Spinner /> : <Button onClick={fileUploadHandler}>Upload</Button>}
+					<br />
+					{hasPredicted ? 'Prediction: ' + prediction : null}
+				</div>
+			</Card>
 		</div>
 	);
 }
