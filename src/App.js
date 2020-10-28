@@ -42,7 +42,7 @@ function App() {
 					<Divider />
 					<br />
 
-					<h4 className="bp3-heading">Choose an X-ray to upload</h4>
+					<h4 className="bp3-heading">Choose an X-Ray</h4>
 					<FileInput type="file" onChange={fileSelectedHandler} />
 
 					<br />
@@ -52,10 +52,17 @@ function App() {
 
 					<Divider />
 					<br />
-					<h4 className="bp3-heading">Get a prediction</h4>
+					<h4 className="bp3-heading">Submit X-Ray</h4>
 					{isLoading ? <Spinner /> : <Button onClick={fileUploadHandler}>Upload</Button>}
 					<br />
-					{hasPredicted ? 'Prediction: ' + prediction : null}
+					{hasPredicted != isLoading ? (
+						<div>
+							<Divider />
+							<br />
+							<h4 className="bp3-heading">Prediction</h4>
+							<h5 className="bp3-heading">{prediction}</h5>
+						</div>
+					) : null}
 				</div>
 			</Card>
 		</div>
